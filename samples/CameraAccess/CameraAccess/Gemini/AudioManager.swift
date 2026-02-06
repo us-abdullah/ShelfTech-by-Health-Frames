@@ -103,10 +103,10 @@ class AudioManager {
       }
 
       // Log first 3 taps, then every ~2 seconds (every 8th tap at 4096 frames/16kHz = ~256ms each)
-      if tapCount <= 3 || tapCount % 8 == 0 {
-        NSLog("[Audio] Tap #%d: %d frames, %d bytes, rms=%.4f",
-              tapCount, buffer.frameLength, pcmData.count, rms)
-      }
+      // if tapCount <= 3 || tapCount % 8 == 0 {
+      //   NSLog("[Audio] Tap #%d: %d frames, %d bytes, rms=%.4f",
+      //         tapCount, buffer.frameLength, pcmData.count, rms)
+      // }
 
       // Accumulate into ~100ms chunks before sending to Gemini
       self.sendQueue.async {
