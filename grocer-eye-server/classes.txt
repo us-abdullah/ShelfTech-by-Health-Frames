@@ -1,0 +1,27 @@
+# GrocerEye / Freiburg 25 classes (order must match Darknet model)
+# Replace with your GrocerEye darknet_configs names if different
+beans
+candy
+cereal
+chocolate
+coffee
+corn
+jam
+juice
+milk
+noodles
+oil
+pasta
+rice
+soda
+tea
+vinegar
+water
+apple
+banana
+bread
+butter
+cheese
+egg
+yogurt
+soup
