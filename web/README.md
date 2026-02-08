@@ -24,7 +24,8 @@ See **[SETUP_AND_REQUIREMENTS.md](../SETUP_AND_REQUIREMENTS.md)** in the repo ro
 4. **Environment variables:** In the project settings (or during import), add:
    - `VITE_GEMINI_API_KEY` = your Gemini or Dedalus API key (required for detection and voice answers).
    - Optionally: `VITE_GEMINI_LIVE_API_KEY`, `VITE_GROCEREEYE_API_URL`, `VITE_OPENCLAW_*` if you use those.
-5. Click **Deploy**. Vercel will run `npm run build` and serve the app from `dist/`.
+5. Click **Deploy**. Vercel will run the build and serve from `dist/`.
+6. **If you see "vite: command not found":** In Vercel → Project Settings → General → Build & Development Settings, set **Build Command** to `npx tsc -b && npx vite build` and **Framework Preset** to **Other**. Save and redeploy.
 
 **Or from the CLI** (after `npm i -g vercel` and `vercel login`):
 

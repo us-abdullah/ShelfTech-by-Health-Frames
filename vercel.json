@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd web && npx tsc -b && npx vite build",
+  "outputDirectory": "web/dist",
+  "installCommand": "cd web && npm install",
+  "framework": null
+}
