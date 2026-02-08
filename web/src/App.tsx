@@ -266,7 +266,7 @@ export default function App() {
   const startVoiceQuestion = useCallback(async () => {
     const productName = itemDetails?.name ?? focusedItem ?? 'No product selected';
     const SpeechRecognitionAPI =
-      (typeof window !== 'undefined' && (window.SpeechRecognition || (window as unknown as { webkitSpeechRecognition?: typeof SpeechRecognition }).webkitSpeechRecognition)) || null;
+      (typeof window !== 'undefined' && (window.SpeechRecognition || window.webkitSpeechRecognition)) || null;
     if (!SpeechRecognitionAPI) {
       setNotification('Voice not supported. Use Chrome, Edge, or Safari.');
       return;

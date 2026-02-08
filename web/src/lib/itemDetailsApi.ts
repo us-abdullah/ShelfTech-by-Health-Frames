@@ -39,7 +39,6 @@ COMPATIBILITY: ...`;
 
 function parseDetailsText(label: string, text: string): ItemDetails {
   const details: ItemDetails = { name: label };
-  const upper = text.toUpperCase();
   const lines = text.split(/\n/).map((l) => l.trim()).filter(Boolean);
 
   for (const line of lines) {

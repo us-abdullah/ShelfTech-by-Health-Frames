@@ -80,7 +80,6 @@ function parseRelevanceJson(text: string, labels: string[]): Record<string, stri
   try {
     const arr = JSON.parse(cleaned) as unknown[];
     if (!Array.isArray(arr)) return map;
-    const labelSet = new Set(labels.map((l) => l.toLowerCase()));
     for (const o of arr) {
       if (o && typeof o === 'object' && typeof (o as { label?: string }).label === 'string' && typeof (o as { relevance?: string }).relevance === 'string') {
         const label = (o as { label: string }).label.trim();

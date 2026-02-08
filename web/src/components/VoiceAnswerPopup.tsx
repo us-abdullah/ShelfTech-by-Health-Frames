@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface VoiceAnswerPopupProps {
   question: string;
   answer: string;

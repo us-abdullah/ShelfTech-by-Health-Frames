@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import type { DetectedItem } from '../lib/detection';
 import type { OverlaySnippet } from '../lib/overlayRelevance';
 

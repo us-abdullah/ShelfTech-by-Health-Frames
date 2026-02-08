@@ -111,7 +111,7 @@ function getActionableBullets(details: ItemDetails, profile: PersonProfile | nul
   const meaningfulCalForBulk = cal >= 150;
   const meaningfulCalForCut = cal >= 80;
 
-  if (category !== 'supplement' && category !== 'beverage') {
+  if (category !== 'beverage') {
     if (hasCut && cal > 0 && meaningfulCalForCut) {
       bullets.push(`${cal} cal — Budget into your deficit; ${cal > 250 ? 'this is a bigger hit—consider portion.' : 'reasonable for a cut.'}`);
     } else if (hasBulk && cal > 0 && meaningfulCalForBulk) {
@@ -122,7 +122,7 @@ function getActionableBullets(details: ItemDetails, profile: PersonProfile | nul
     }
   }
 
-  if (meaningfulProtein && category !== 'supplement') {
+  if (meaningfulProtein) {
     if (profile?.proteinAndBudget && details.priceAtCostco != null && details.priceAtCostco > 0) {
       const perDollar = (protein / details.priceAtCostco).toFixed(1);
       bullets.push(`${protein}g protein — ${perDollar}g per dollar; good value for your protein goal.`);
@@ -133,7 +133,7 @@ function getActionableBullets(details: ItemDetails, profile: PersonProfile | nul
     }
   }
 
-  if (meaningfulCarbs && category !== 'supplement') {
+  if (meaningfulCarbs) {
     if (hasDiabetes) {
       bullets.push(`${carbs}g carbs — Count toward your limit; pair with protein or fat to blunt spikes.`);
     } else if (hasBulk && carbs >= 25) {
@@ -143,7 +143,7 @@ function getActionableBullets(details: ItemDetails, profile: PersonProfile | nul
     }
   }
 
-  if (meaningfulFat && category !== 'supplement') {
+  if (meaningfulFat) {
     bullets.push(`${fat}g fat — Supports hormones and absorption; keeps you full.`);
   }
 
@@ -162,7 +162,7 @@ function getActionableBullets(details: ItemDetails, profile: PersonProfile | nul
   if (hasStomach && name) {
     if (productMatch(name, 'banana', 'rice', 'oat', 'toast', 'plain yogurt', 'chicken', 'white fish')) {
       bullets.push('Usually gentle on sensitive stomachs.');
-    } else if (productMatch(name, 'yogurt', 'kefir', 'ferment') && category !== 'supplement') {
+    } else if (productMatch(name, 'yogurt', 'kefir', 'ferment')) {
       bullets.push('Probiotics may help digestion; plain is often easier with IBS.');
     } else if (productMatch(name, 'spicy', 'chili', 'acid', 'citrus', 'tomato')) {
       bullets.push('Can trigger reflux or stomach issues if you’re sensitive.');
@@ -179,7 +179,7 @@ function getActionableBullets(details: ItemDetails, profile: PersonProfile | nul
   }
 
   // —— 6. Pairings: what to eat it with ——
-  if (name && category !== 'supplement') {
+  if (name) {
     if (category === 'fruit') {
       if (productMatch(name, 'orange', 'citrus', 'grapefruit', 'lemon')) bullets.push('Pairs well: leafy greens (vitamin C helps absorb iron), nuts or cheese (balance sugar), or in a smoothie with yogurt and oats.');
       else if (productMatch(name, 'banana')) bullets.push('Pairs well: nut butter or oats for sustained energy; with protein (e.g. Greek yogurt) post-workout.');
@@ -207,7 +207,7 @@ function getActionableBullets(details: ItemDetails, profile: PersonProfile | nul
   }
 
   // —— 7. Optimal timing ——
-  if (name && category !== 'supplement') {
+  if (name) {
     if (category === 'fruit') {
       if (productMatch(name, 'orange', 'citrus')) bullets.push('When: morning or with breakfast (vitamin C + hydration); or post-workout with protein for recovery.');
       else if (productMatch(name, 'banana')) bullets.push('When: pre- or post-workout for quick energy; or as a morning snack with nut butter.');

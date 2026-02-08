@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface CopilotNotificationProps {
   message: string;
   type?: 'info' | 'success' | 'warning';
