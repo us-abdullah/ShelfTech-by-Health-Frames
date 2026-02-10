@@ -17,6 +17,14 @@ export const env = {
   get grocerEyeApiUrl(): string {
     return import.meta.env.VITE_GROCEREEYE_API_URL ?? '';
   },
+  /** Optional: Dedalus key for voice Q&A only. If set, voice "Ask about this product" uses Dedalus (not Gemini). Falls back to VITE_GEMINI_API_KEY. */
+  get dedalusVoiceApiKey(): string {
+    return import.meta.env.VITE_DEDALUS_VOICE_API_KEY ?? import.meta.env.VITE_GEMINI_API_KEY ?? '';
+  },
+  /** Dedalus model for voice Q&A only (when using Dedalus). Other features use google/gemini-2.0-flash. Default: Mistral Small. */
+  get dedalusVoiceModel(): string {
+    return import.meta.env.VITE_DEDALUS_VOICE_MODEL ?? 'mistralai/mistral-small';
+  },
   /** Optional: use a separate key for Gemini Live (Google). Set when using Dedalus for detection. */
   get geminiLiveApiKey(): string {
     return import.meta.env.VITE_GEMINI_LIVE_API_KEY ?? env.geminiApiKey ?? '';

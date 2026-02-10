@@ -1,5 +1,6 @@
 /**
- * Send user's question (e.g. from voice transcript) + product context to Gemini; get text answer.
+ * Send user's question (e.g. from voice transcript) + product context to Dedalus or Gemini; get text answer.
+ * Uses Dedalus when the API key is a Dedalus key (dsk-...) or when VITE_DEDALUS_VOICE_API_KEY is set.
  */
 
 import { env, isDedalusApiKey } from './env';
@@ -23,6 +24,7 @@ Answer in plain text, concisely and helpfully. For chocolate mention cocoa % if 
 }
 
 async function askDedalus(question: string, productContext: string, apiKey: string, profile: PersonProfile | null): Promise<string> {
+  const model = env.dedalusVoiceModel;
   const res = await fetch(`${DEDALUS_BASE}/v1/chat/completions`, {
     method: 'POST',
     headers: {
@@ -30,7 +32,7 @@ async function askDedalus(question: string, productContext: string, apiKey: stri
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: 'google/gemini-2.0-flash',
+      model,
       messages: [{ role: 'user', content: buildPrompt(question, productContext, profile ? profileSummary(profile) : undefined) }],
       max_tokens: 400,
       temperature: 0.3,
@@ -62,8 +64,8 @@ async function askGoogle(question: string, productContext: string, apiKey: strin
 }
 
 export async function askGeminiAboutProduct(question: string, productContext: string, profile: PersonProfile | null = null): Promise<string> {
-  const apiKey = env.geminiApiKey;
-  if (!apiKey) throw new Error('No API key');
+  const apiKey = env.dedalusVoiceApiKey;
+  if (!apiKey) throw new Error('No API key (set VITE_GEMINI_API_KEY or VITE_DEDALUS_VOICE_API_KEY)');
   if (isDedalusApiKey(apiKey)) return askDedalus(question, productContext, apiKey, profile);
   return askGoogle(question, productContext, apiKey, profile);
 }

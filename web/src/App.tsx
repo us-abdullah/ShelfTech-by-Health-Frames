@@ -271,8 +271,8 @@ export default function App() {
       setNotification('Voice not supported. Use Chrome, Edge, or Safari.');
       return;
     }
-    if (!env.geminiApiKey) {
-      setNotification('Set VITE_GEMINI_API_KEY for voice answers');
+    if (!env.dedalusVoiceApiKey) {
+      setNotification('Set VITE_GEMINI_API_KEY or VITE_DEDALUS_VOICE_API_KEY for voice answers');
       return;
     }
     voiceGotResultRef.current = false;
